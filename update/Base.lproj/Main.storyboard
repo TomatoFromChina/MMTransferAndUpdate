@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh0-El-x6M">
+                                <rect key="frame" x="0.0" y="65" width="375" height="44"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="kIL-AP-fTf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="start scan"/>
+                                <connections>
+                                    <action selector="starScan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FUk-lf-8dP"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fit-e9-7T0">
+                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="7ZE-cE-V4m"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="r7w-Li-Eh3"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the miaomiao bluetooth transfer d &amp; firmware update demo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgI-nR-YsU">
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8fa-Lv-L37"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dh0-El-x6M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1rC-xs-Z62"/>
+                            <constraint firstAttribute="trailing" secondItem="dh0-El-x6M" secondAttribute="trailing" id="7VG-OQ-aPI"/>
+                            <constraint firstItem="dgI-nR-YsU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="8dC-UW-0ik"/>
+                            <constraint firstItem="dgI-nR-YsU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="E98-W9-L3g"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fit-e9-7T0" secondAttribute="bottom" id="SCW-Mq-Mku"/>
+                            <constraint firstAttribute="trailing" secondItem="dgI-nR-YsU" secondAttribute="trailing" id="Som-U3-897"/>
+                            <constraint firstItem="Fit-e9-7T0" firstAttribute="top" secondItem="dh0-El-x6M" secondAttribute="bottom" id="fuV-V9-VU8"/>
+                            <constraint firstItem="Fit-e9-7T0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gGm-06-ncp"/>
+                            <constraint firstAttribute="trailing" secondItem="Fit-e9-7T0" secondAttribute="trailing" id="hJ0-ay-2SK"/>
+                            <constraint firstItem="dh0-El-x6M" firstAttribute="top" secondItem="dgI-nR-YsU" secondAttribute="bottom" constant="5" id="jyJ-o5-PLs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Fit-e9-7T0" id="yRs-wx-4dN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-52" y="-225"/>
+        </scene>
+    </scenes>
+</document>
