@@ -2,7 +2,7 @@
 a demo for miaomiao bluetooth transfer and firmware update
 ## install
 ```pod  'iOSDFULibrary'
- pod   'MBProgressHUD'
+ pod  'MBProgressHUD'
 ```
 ## something about miaomiao
 1. APP in the development process must first call ``` +(void)startScaning ``` to get the MAC address, . after   you can connect  directly by MAC ```+(void)connectWithMAC:(NSString *)MAC ``` .
@@ -11,7 +11,7 @@ a demo for miaomiao bluetooth transfer and firmware update
 
 3. When recieved data  func```- (void)fqResp:(BaseResp*)resp ``` call back.
 
-4. When the user changes the sensor, the APP needs to give the change confirm . Call to``` +(void)confirmChangeconfirm``` replacement, do not confirm will always receive the FQChange status. After replacement will return to the new probe data.
+4. When the user changes the sensor, the APP needs to give the change confirm . Call ```+(void)confirmChangeconfirm``` replacement, if not you always receive the FQChange status. After replace  will return  the new  sensor data.
 
 5. The miaomiao transefer date every 5 minutes.
 
