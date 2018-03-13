@@ -10,6 +10,7 @@
 		2AB34E0A45303773A133B4C7 /* Pods_update.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B51F2411731AF7FAA3CF44F /* Pods_update.framework */; };
 		F474DA9F20565F6400FA5061 /* FQApiObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F474DA9E20565F6400FA5061 /* FQApiObject.m */; };
 		F474DACC205684A500FA5061 /* updateFrameWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F474DACB205684A500FA5061 /* updateFrameWork.framework */; };
+		F474DAD62057AA7F00FA5061 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F474DAD52057AA7F00FA5061 /* README.md */; };
 		F48B9A4A204E4F9E0078C946 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B9A49204E4F9E0078C946 /* main.m */; };
 		F48B9A4D204E4F9E0078C946 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B9A4C204E4F9E0078C946 /* AppDelegate.m */; };
 		F48B9A50204E4F9E0078C946 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B9A4F204E4F9E0078C946 /* ViewController.m */; };
@@ -43,6 +44,7 @@
 		F474DA9D20565F6400FA5061 /* FQApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQApiObject.h; sourceTree = "<group>"; };
 		F474DA9E20565F6400FA5061 /* FQApiObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQApiObject.m; sourceTree = "<group>"; };
 		F474DACB205684A500FA5061 /* updateFrameWork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = updateFrameWork.framework; sourceTree = "<group>"; };
+		F474DAD52057AA7F00FA5061 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F48B9A45204E4F9E0078C946 /* update.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = update.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B9A49204E4F9E0078C946 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F48B9A4B204E4F9E0078C946 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		F48B9A3C204E4F9E0078C946 = {
 			isa = PBXGroup;
 			children = (
+				F474DAD52057AA7F00FA5061 /* README.md */,
 				F48B9A47204E4F9E0078C946 /* update */,
 				F48B9A61204E4F9F0078C946 /* updateTests */,
 				F48B9A46204E4F9E0078C946 /* Products */,
@@ -281,6 +284,7 @@
 			files = (
 				F48B9A58204E4F9E0078C946 /* LaunchScreen.storyboard in Resources */,
 				F48B9A55204E4F9E0078C946 /* Assets.xcassets in Resources */,
+				F474DAD62057AA7F00FA5061 /* README.md in Resources */,
 				F48B9A53204E4F9E0078C946 /* Main.storyboard in Resources */,
 				F4BDA9E9204E8AB300F2B466 /* PeripheralCell.xib in Resources */,
 			);
