@@ -1,7 +1,8 @@
 # MMTransferAndUpdate
 a demo for miaomiao bluetooth transfer and firmware update
 ## install
-```pod  'iOSDFULibrary'
+ ```
+ pod  'iOSDFULibrary'
  pod  'MBProgressHUD'
 ```
 ## something about miaomiao
