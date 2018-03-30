@@ -1,6 +1,0 @@
-framework module updateFrameWork {
-  umbrella header "updateFrameWork.h"
-
-  export *
-  module * { export * }
-}
