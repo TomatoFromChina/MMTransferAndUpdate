@@ -95,7 +95,7 @@
 
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    FQLog(@"peripheral.name %@",peripheral.name);
+//    FQLog(@"peripheral.name %@",peripheral.name);
     if ([peripheral.name hasPrefix:@"miaomiao"]){
         NSData *data = advertisementData[@"kCBAdvDataManufacturerData"];
         NSString *dataStr = [self hexStringFromData:data];
@@ -244,10 +244,21 @@
         [self.delegate fqResp:resp];
         return;
     }
+	if(data.length == 12 && [[self hexStringFromData:data] isEqualToString:@"434c4f534520554152540d0a"]){
+		NSString *s = [self hexStringFromData:data];
+		FQBaseResp *resp = [[FQBaseResp alloc]init];
+		resp.errCode = error.code;
+		resp.errStr =  error.localizedDescription;
+		resp.hexStr = s;
+		resp.type = FQUART;
+		[self.delegate fqResp:resp];
+		return;
+	}
+	
 	
     //sensor hex data
     NSString *data_s = [self hexStringFromData:data];
-	//	NSLog(@"data_s-->%@",data_s);
+	NSLog(@"data_s-->%@",data_s);
     if (data.length) {
         NSString *pre_s = [data_s substringToIndex:2];
         if ([pre_s isEqualToString:@"28"] && self.bufStr.length == 0) {
@@ -261,6 +272,8 @@
     }
     if (self.bufStr.length == self.bufLen * 2) {
 		
+		NSLog(@"bufLen-->%ld",self.bufLen);
+		
 		FQBaseResp *resp = [[FQBaseResp alloc]init];
 		resp.errCode = error.code;
 		resp.errStr =  error.localizedDescription;
@@ -272,9 +285,12 @@
         }
 		NSTimeInterval timer = [[NSDate date]timeIntervalSinceDate:_startDate];
 		NSLog(@"timerinterval-->%f",timer);
-        [self reset];
-	
+		[self reset]; return;
     }
+	if([data_s hasSuffix:@"29"] && self.bufStr.length != self.bufLen * 2){
+		NSLog(@"bufStrLenth-->%ld",self.bufStr.length/2);
+		[self reset];
+	}
 }
 
 //写数据回调

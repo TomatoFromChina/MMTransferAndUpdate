@@ -15,6 +15,9 @@
 #import "PeripheralCell.h"
 #import <updateFrameWork/FQHttpReqest.h>
 #import "FQBleManager.h"
+#import "FQToolsUtil.h"
+
+#import "DetailVC.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -24,6 +27,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"device list";
 	self.peripheralDict = [NSMutableDictionary dictionaryWithCapacity:2];
 	
 	//开始扫描
@@ -60,6 +64,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	return self.peripheralDict.allKeys.count;
 }
+- (IBAction)changed:(UISlider *)slider {
+	NSLog(@"%f",slider.value);
+	
+	self.rssiLab.text = [NSString stringWithFormat:@"%.0f",slider.value];
+	[FQToolsUtil saveUserDefaults:@(slider.value) key:@"RSSI"];
+	
+	
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	static NSString *cellId = @"PeripheralCell";
 	PeripheralCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -67,8 +79,8 @@
 		cell = [[NSBundle mainBundle]loadNibNamed:@"PeripheralCell" owner:self options:nil][0];
 	}
 	NSString *UUIDString = [self.peripheralDict.allKeys objectAtIndex:indexPath.row];
-	cell.title.text = [NSString stringWithFormat:@"connect miaomiao:%@",UUIDString];
-	[cell.updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+	cell.title.text = [NSString stringWithFormat:@"miaomiao:%@",UUIDString];
+//	[cell.updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 	return cell;
 }
 
@@ -76,7 +88,11 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	NSString *MAC = [self.peripheralDict.allKeys objectAtIndex:indexPath.row];
 	//连接选择的设备
-	[FQApi connectWithMAC:MAC];
+//	[FQApi connectWithMAC:MAC];
+	DetailVC *detailVC = [[DetailVC alloc]init];
+	detailVC.MAC = MAC;
+	[self.navigationController pushViewController:detailVC animated:YES];
+
 	
 
 	
@@ -107,7 +123,8 @@
 	UPloadFirmwareVC *fVC = [[UPloadFirmwareVC alloc]init];
 	fVC.selectedPeripheral = peripheral; //your peripheral
 	fVC.successBlock = ^{
-		[FQApi connectAfterUpdateWithMAC:MAC];
+//		[FQApi connectAfterUpdateWithMAC:MAC];
+		[FQApi cancelConnectWithMAC:MAC];
 	};
 	fVC.view.backgroundColor = [UIColor clearColor];
 	fVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;

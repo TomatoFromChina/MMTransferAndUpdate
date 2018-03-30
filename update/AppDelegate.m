@@ -14,6 +14,8 @@
 #import <updateFrameWork/FQHttpReqest.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Toast+UIView.h"
+#import "FQToolsUtil.h"
+#import "FQGlycemicUtil.h"
 
 
 //#import "UPloadFirmwareVC.swift"
@@ -29,6 +31,7 @@
 	
 	//you can connected to miaomiao just like this..
 	//[FQApi connectWithMAC:@"D4973DFEA21C"];
+	[FQToolsUtil saveUserDefaults:@(-40) key:@"RSSI"];
 	return YES;
 }
 
@@ -83,15 +86,25 @@
 		NSLog(@"miaomioa is BootLoader Model，you must update before used it");
 	}
 	
-	ViewController *rootVC = (ViewController *)self.window.rootViewController;
-	[rootVC.peripheralDict setObject:peripheral forKey:MAC];
-	[rootVC.tableView reloadData];
-	rootVC.stateLab.text = @"scaning";
+	UINavigationController *rootVC = (UINavigationController *)self.window.rootViewController;
+	double rssi = [[FQToolsUtil userDefaults:@"RSSI"]doubleValue];
+	
+	if([RSSI doubleValue] > rssi && [RSSI doubleValue]<0){
+		ViewController *vc = (ViewController *)[rootVC.childViewControllers firstObject];
+		
+		[vc.peripheralDict setObject:peripheral forKey:MAC];
+		[vc.tableView reloadData];
+		vc.stateLab.text = @"scaning";
+		NSLog(@"%f--%f",[RSSI doubleValue],rssi);
+	}
+	
+
 }
 
 - (void)fqConnectSuccess:(CBPeripheral *)peripheral
 		  centralManager:(CBCentralManager *)centralManager{
 	[self.window makeToast:@"connectSuccess" duration:2 position:@"center"];
+	
 	NSLog(@"connectSuccess");
 }
 - (void)fqConnectFailed {
@@ -103,6 +116,8 @@
 
 #pragma 番茄SDK 数据回调
 - (void)fqResp:(FQBaseResp*)resp{
+	
+	[MBProgressHUD hideHUDForView:self.window animated:YES];
 	
 	enum FQRespType type = resp.type;
 	NSString *msg = @"";
@@ -117,9 +132,16 @@
 			break;
 		case FQReceived:{
 			msg = @"received";
-			
+			msg = [self string:resp.hexStr];
 		}
 			break;
+		case FQUART:{
+			msg = @"UART close success!";
+		}
+		break;
+		
+		
+		
 		default:
 			break;
 	}
@@ -127,6 +149,16 @@
 	NSLog(@"received data hexStr--->\n%@",resp.hexStr);
 }
 
+- (NSString *)string:(NSString *)hexStr{
+	NSDictionary *dict = [[FQGlycemicUtil shared]receiveGlucose:hexStr];
+	NSMutableString *appendStr = [[NSMutableString alloc]init];
+	[appendStr appendString:[NSString stringWithFormat:@"battery：%@%%\n",dict[@"battery"]]];
+	[appendStr appendString:[NSString stringWithFormat:@"counter：%@\n",dict[@"counter"]]];
+	[appendStr appendString:[NSString stringWithFormat:@"frimVersion：%@\n",dict[@"frimVersion"]]];
+	[appendStr appendString:[NSString stringWithFormat:@"sensorId：%@\n",dict[@"uid"]]];
+	
+	return appendStr;
+}
 
 - (void)showAlertView:(NSString *)msg{
 	//    FQLog(@">>>%@",msg);

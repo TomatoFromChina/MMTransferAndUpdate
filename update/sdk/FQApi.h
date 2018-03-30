@@ -24,4 +24,6 @@
 
 +(void)confirmChange;	//when miaomiao read new sensor ,your App need confirm change.
 
++(void)closeUART; //close UART
+
 @end

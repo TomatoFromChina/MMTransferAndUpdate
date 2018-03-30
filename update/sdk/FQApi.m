@@ -89,6 +89,13 @@
         });
     });
 }
++ (void)closeUART{
+	FQBleManager *manager = [FQBleManager shared];
+	Byte byte[1] = {};
+	byte[0] = 0x45;
+	NSData * data = [NSData dataWithBytes:&byte length:sizeof(byte)];
+	[manager writeFileData:data];
+}
 
 
 @end

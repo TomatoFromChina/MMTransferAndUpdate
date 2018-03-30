@@ -12,6 +12,7 @@
 @property(nonatomic,strong)NSMutableDictionary *peripheralDict;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *stateLab;
+@property (weak, nonatomic) IBOutlet UILabel *rssiLab;
 
 @end
 

@@ -18,6 +18,7 @@ enum  FQRespType {
     FQChange             = -2,    /**< when miaomiao read another sensor*/
     FQSetIntervalSuccess = -6,    /**< set time interval success */
     FQSetIntervalFail    = -7,    /**< set time interval failed */
+	FQUART 				 = -8
 };
 
 
